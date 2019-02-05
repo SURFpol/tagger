@@ -1,0 +1,29 @@
+{:paths ["resources" "src"]
+
+ :deps {org.clojure/clojure             {:mvn/version "1.10.0"}
+        ch.qos.logback/logback-classic  {:mvn/version "1.2.3"
+                                         :exclusions [org.slf4j/slf4j-api]}
+        org.clojure/tools.logging       {:mvn/version "0.4.1"}
+        cheshire                        {:mvn/version "5.8.0"}
+
+        fn-fx/fn-fx-openjfx11           {:mvn/version "0.5.0-SNAPSHOT"}}
+
+ :aliases {:outdated {:extra-deps {olical/depot {:mvn/version "1.2.0"}}
+                      :main-opts  ["-m" "depot.outdated.main"]}
+           :rebl     {:extra-paths ["dev"]
+                      :extra-deps {integrant/repl              {:mvn/version "0.3.1"}
+                                   com.cognitect/rebl          {:local/root "/Users/jelmer/Code/REBL-0.9.109.jar"}
+                                   org.clojure/core.async          {:mvn/version "0.4.490"}
+                                   org.openjfx/javafx-fxml     {:mvn/version "11.0.1"}
+                                   org.openjfx/javafx-controls {:mvn/version "11.0.1"}
+                                   org.openjfx/javafx-swing    {:mvn/version "11.0.1"}
+                                   org.openjfx/javafx-base     {:mvn/version "11.0.1"}
+                                   org.openjfx/javafx-web      {:mvn/version "11.0.1"}}
+                      :main-opts  ["-m" "cognitect.rebl"]
+                      :jvm-opts   ["-Dclojure.server.repl={:port,60606,:accept,clojure.core.server/repl}"]}
+           :repl     {:extra-paths ["dev"]
+                      :extra-deps {org.clojure/tools.nrepl {:mvn/version "0.2.13"}
+                                   proto-repl {:mvn/version "0.3.1"}
+                                   integrant/repl {:mvn/version "0.3.1"}
+                                   proto-repl-charts {:mvn/version "0.3.2"}}
+                      :main-opts ["-e" "(require,'[clojure.tools.nrepl.server,:refer,[start-server]]),(start-server,:port,60606)"]}}}
