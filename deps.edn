@@ -28,3 +28,4 @@
                                    integrant/repl {:mvn/version "0.3.1"}
                                    proto-repl-charts {:mvn/version "0.3.2"}}
                       :main-opts ["-e" "(require,'[clojure.tools.nrepl.server,:refer,[start-server]]),(start-server,:port,60606)"]}}}
+                      

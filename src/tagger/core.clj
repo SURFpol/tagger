@@ -1,10 +1,11 @@
 (ns tagger.core
-  (:require [tagger.data :refer [persistent-atom]]
+  (:require [tagger.data :refer [persistent-atom create-initial-state-file]]
             [taoensso.nippy :as nippy]
             [fn-fx.fx-dom :as dom]
             [fn-fx.diff :refer [component defui render should-update?]]
             [fn-fx.controls :as ui]
-            [fn-fx.util :refer [run-later]]))
+            [fn-fx.util :refer [run-later]]
+            [clojure.java.io :as io]))
 
 (def main-font (ui/font :family "Helvetica" :size 20))
 
@@ -257,6 +258,9 @@
   state)
 
 (defn -main []
+  (if (not (.exists (io/file "resource/state")))
+    (create-initial-state-file))
+
   (let [;; data-state holds the current state of our docs and is setup to persist to disk
         data-state (init-state)
 

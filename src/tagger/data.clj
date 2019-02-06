@@ -20,7 +20,8 @@
   (let [files ["figshare.json"
                "hbovpk.json"
                "leraar24.json"
-               "stimuleringsregeling.json"]]
+               "stimuleringsregeling.json"
+               "wur.json"]]
     (->> files
          (mapcat load-raw-data))))
 
@@ -41,14 +42,18 @@
       (fn [_ _ _ new-state]
         (nippy/freeze-to-file filename new-state)))))
 
-(comment
-  ; write initial state file
+(defn create-initial-state-file
+  []
   (let [data (load-all-raw-data)
         todo (todo-data data)
         state {:todo todo
                :done {}
                :current {}}]
-    (nippy/freeze-to-file "resources/state" state))
+    (nippy/freeze-to-file "resources/state" state)))
+
+(comment
+  ; write initial state file
+  (create-initial-state-file)
 
   ; test output
   (let [state (nippy/thaw-from-file "resources/state")]
