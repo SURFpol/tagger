@@ -28,11 +28,6 @@
     (run-later
      (.loadContent engine html))))
 
-(defn add-shortcuts
-  []
-  (let [acc (.getAccelerators (.getScene @(:root @ui-state)))]
-    (.put acc )))
-
 (defui MainWindow
   (render [this state]
     (let [{:keys [id source text language mime_type title url]
@@ -170,18 +165,13 @@
                      :text (str "Done: " n-done "/" (+ n-todo n-done))
                      :grid-pane/column-index 0
                      :grid-pane/row-index 8
-                     :grid-pane/row-span 3)
+                     :grid-pane/column-span 2)
 
                    (ui/web-view
                      :id "web-browser"
                      :grid-pane/column-index 3
                      :grid-pane/row-index 0
                      :grid-pane/row-span 8)]))))
-
-
-(comment
-  (-main)
-  nil)
 
 ; The stage
 (defui Stage
@@ -292,5 +282,3 @@
 (comment
   (-main)
   nil)
-
-
