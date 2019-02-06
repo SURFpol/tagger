@@ -42,12 +42,17 @@
         (nippy/freeze-to-file filename new-state)))))
 
 (comment
-  ; write initial todo file
+  ; write initial state file
   (let [data (load-all-raw-data)
-        todo (todo-data data)]
-    (nippy/freeze-to-file "resources/todo" todo))
+        todo (todo-data data)
+        state {:todo todo
+               :done {}
+               :current {}}]
+    (nippy/freeze-to-file "resources/state" state))
 
   ; test output
-  (nippy/thaw-from-file "resources/todo")
+  (let [state (nippy/thaw-from-file "resources/state")]
+    state)
+
 
   nil)
