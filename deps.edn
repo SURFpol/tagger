@@ -5,6 +5,7 @@
                                          :exclusions [org.slf4j/slf4j-api]}
         org.clojure/tools.logging       {:mvn/version "0.4.1"}
         cheshire                        {:mvn/version "5.8.0"}
+        com.taoensso/nippy              {:mvn/version "2.14.0"}
 
         fn-fx/fn-fx-openjfx11           {:mvn/version "0.5.0-SNAPSHOT"}}
 
