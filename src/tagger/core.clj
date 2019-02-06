@@ -159,6 +159,13 @@
                                   :on-action {:event :set-language
                                               :language "nl"
                                               :doc-id id
+                                              :doc doc})
+                                (ui/button
+                                  :id "unknown-button"
+                                  :text "Unknown"
+                                  :on-action {:event :set-language
+                                              :language "unknown"
+                                              :doc-id id
                                               :doc doc})])
 
                    (ui/label
@@ -250,7 +257,8 @@
       (case text
         "e" (.fire (get-button "#en-button"))
         "n" (.fire (get-button "#nl-button"))
-        "u" (.fire (get-button "#url-button"))
+        "u" (.fire (get-button "#unknown-button"))
+        "o" (.fire (get-button "#url-button"))
         nil)))
   state)
 

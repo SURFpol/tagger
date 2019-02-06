@@ -5,4 +5,5 @@ Then run: `make ui`
 Keyboard shortcuts:
 * CMD-e: set English
 * CMD-n: set Dutch
-* CMD-u: open url
+* CMD-u: set Unknown
+* CMD-o: open url
