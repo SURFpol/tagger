@@ -248,7 +248,7 @@
   state)
 
 (defn -main []
-  (if (not (.exists (io/file "resource/state")))
+  (if (not (.exists (io/file "resources/state")))
     (create-initial-state-file))
 
   (let [;; data-state holds the current state of our docs and is setup to persist to disk
