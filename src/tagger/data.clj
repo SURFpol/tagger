@@ -51,13 +51,11 @@
                :current {}}]
     (nippy/freeze-to-file "resources/state" state)))
 
-(comment
-  ; write initial state file
-  (create-initial-state-file)
-
-  ; test output
-  (let [state (nippy/thaw-from-file "resources/state")]
-    state)
-
-
-  nil)
+(defn export-json
+  []
+  (if (.exists (io/file "resources/state"))
+    (let [state (nippy/thaw-from-file "resources/state")
+          docs (concat (vals (:todo state)) (vals (:done state)))]
+      (write-json-data docs "resources/output.json")
+      :done)
+    :no-state))

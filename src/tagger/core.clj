@@ -1,5 +1,5 @@
 (ns tagger.core
-  (:require [tagger.data :refer [persistent-atom create-initial-state-file]]
+  (:require [tagger.data :refer [persistent-atom create-initial-state-file export-json]]
             [taoensso.nippy :as nippy]
             [fn-fx.fx-dom :as dom]
             [fn-fx.diff :refer [component defui render should-update?]]
@@ -167,6 +167,13 @@
                      :grid-pane/row-index 8
                      :grid-pane/column-span 2)
 
+                   (ui/button
+                     :id "export-button"
+                     :text "Export JSON"
+                     :grid-pane/column-index 2
+                     :grid-pane/row-index 7
+                     :on-action {:event :export-json})
+
                    (ui/web-view
                      :id "web-browser"
                      :grid-pane/column-index 3
@@ -224,6 +231,11 @@
 (defmethod handle-event :load-url
   [state {:keys [url]}]
   (load-url url)
+  state)
+
+(defmethod handle-event :export-json
+  [state _]
+  (export-json)
   state)
 
 (defn get-button
